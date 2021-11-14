@@ -49,7 +49,7 @@ public class WhatsAppService {
 
 		WebUtility.saveDriverDataToUser(userId, driver);
 
-		driver.get(GOOGLE_URL);
+		driver.get(WHATSAPP_WEB_URL);
 
 		//WebUtility.waitUntilElementIsVisible(driver, QR_CODE_PATH);
 
