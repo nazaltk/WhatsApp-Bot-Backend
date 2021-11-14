@@ -31,10 +31,10 @@ public class WhatsAppService {
 
 	private String PENDING_VALUE = "Pending";
 
-	private String QR_CODE_PATH = "//div[@class='_2UwZ_']";
+	private String QR_CODE_PATH = "//canvas/parent::div";
 
-	private String QR_CODE_WITH_RELOAD_PATH = "//div[@class='_2UwZ_ n4LVt']";
-
+	private String QR_CODE_CANVAS_PATH = "//canvas";
+ 
 	private String PROFILE_PICTURE_XPATH = "//span[@data-icon='default-user']";
 
 	private String SEND_BUTTON_XPATH = "//span[@data-icon='send']";
@@ -44,14 +44,14 @@ public class WhatsAppService {
 
 	public String openWhatsapp(long userId) {
 		System.setProperty("webdriver.chrome.driver", "/app/.chromedriver/bin/chromedriver");
-		//System.setProperty("webdriver.chrome.driver", "N:\\chromedriver.exe");
+		// System.setProperty("webdriver.chrome.driver", "N:\\chromedriver.exe");
 		WebDriver driver = new ChromeDriver();
 
 		WebUtility.saveDriverDataToUser(userId, driver);
 
 		driver.get(WHATSAPP_WEB_URL);
 
-		//WebUtility.waitUntilElementIsVisible(driver, QR_CODE_PATH);
+		WebUtility.waitUntilElementIsVisible(driver, QR_CODE_CANVAS_PATH);
 
 		return "Success";
 
@@ -84,13 +84,13 @@ public class WhatsAppService {
 
 		if (driver.findElements(By.xpath(PROFILE_PICTURE_XPATH)).size() > 0) {
 			response.put(STATUS_ATTR, SUCCESS_VALUE);
-		} else if (driver.findElements(By.xpath(QR_CODE_PATH)).size() > 0) {
+		} else if (driver.findElement(By.xpath(QR_CODE_PATH)).getAttribute("class").split(" ").length == 1) {
 			response.put(STATUS_ATTR, PENDING_VALUE);
 			response.put(QR_CODE_ATTR, findQRCOdeValue(driver));
-		} else if (driver.findElements(By.xpath(QR_CODE_WITH_RELOAD_PATH)).size() > 0) {
+		} else if (driver.findElement(By.xpath(QR_CODE_PATH)).getAttribute("class").split(" ").length == 2) {
 			response.put(STATUS_ATTR, PENDING_VALUE);
 
-			driver.findElement(By.xpath(QR_CODE_WITH_RELOAD_PATH)).click();
+			driver.findElement(By.xpath(QR_CODE_PATH)).click();
 
 			WebUtility.sleep(500);
 
