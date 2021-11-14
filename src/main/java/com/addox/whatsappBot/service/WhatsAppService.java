@@ -35,7 +35,7 @@ public class WhatsAppService {
 	private String QR_CODE_PATH = "//canvas/parent::div";
 
 	private String QR_CODE_CANVAS_PATH = "//canvas";
- 
+
 	private String PROFILE_PICTURE_XPATH = "//span[@data-icon='default-user']";
 
 	private String SEND_BUTTON_XPATH = "//span[@data-icon='send']";
@@ -46,11 +46,11 @@ public class WhatsAppService {
 	public String openWhatsapp(long userId) {
 		System.setProperty("webdriver.chrome.driver", "/app/.chromedriver/bin/chromedriver");
 		// System.setProperty("webdriver.chrome.driver", "N:\\chromedriver.exe");
-		
+
 		DesiredCapabilities capabilities = new DesiredCapabilities();
 		capabilities.setCapability("browserName", "chrome");
-		capabilities.setCapability("version", "95.0.4638.69"); 
-		
+		capabilities.setCapability("browserVersion", "95.0.4638.69");
+
 		WebDriver driver = new ChromeDriver(capabilities);
 
 		WebUtility.saveDriverDataToUser(userId, driver);
