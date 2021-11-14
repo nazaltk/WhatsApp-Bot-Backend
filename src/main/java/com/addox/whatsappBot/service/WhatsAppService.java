@@ -25,6 +25,8 @@ public class WhatsAppService {
 
 	private String SUCCESS_VALUE = "Success";
 
+	private String CONNTECTING_VALUE = "Connecting";
+
 	private String PENDING_VALUE = "Pending";
 
 	private String QR_CODE_PATH = "//div[@class='_2UwZ_']";
@@ -39,7 +41,8 @@ public class WhatsAppService {
 	UserRepository userRepository;
 
 	public String openWhatsapp(long userId) {
-		System.setProperty("webdriver.chrome.driver", "N:\\chromedriver.exe");
+		System.setProperty("webdriver.chrome.driver", "/app/.chromedriver/bin/chromedriver");
+		//System.setProperty("webdriver.chrome.driver", "N:\\chromedriver.exe");
 		WebDriver driver = new ChromeDriver();
 
 		driver.get(WHATSAPP_WEB_URL);
@@ -90,6 +93,8 @@ public class WhatsAppService {
 			WebUtility.sleep(500);
 
 			response.put(QR_CODE_ATTR, findQRCOdeValue(driver));
+		} else {
+			response.put(STATUS_ATTR, CONNTECTING_VALUE);
 		}
 
 		return response;
