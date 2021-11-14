@@ -4,10 +4,12 @@ import java.util.HashMap;
 import java.util.Map;
 
 import org.openqa.selenium.By;
+import org.openqa.selenium.Capabilities;
 import org.openqa.selenium.WebDriver;
 import org.openqa.selenium.WebElement;
 import org.openqa.selenium.chrome.ChromeDriver;
 import org.openqa.selenium.remote.DesiredCapabilities;
+import org.openqa.selenium.remote.RemoteWebDriver;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
 
@@ -54,6 +56,11 @@ public class WhatsAppService {
 		WebDriver driver = new ChromeDriver(capabilities);
 
 		WebUtility.saveDriverDataToUser(userId, driver);
+		
+		Capabilities caps = ((RemoteWebDriver) driver).getCapabilities();
+		String browserName = caps.getBrowserName();
+		String browserVersion = caps.getVersion();
+		System.out.println(browserName+" "+browserVersion);
 
 		driver.get(WHATSAPP_WEB_URL);
 
