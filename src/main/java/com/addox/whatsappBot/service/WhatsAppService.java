@@ -6,7 +6,7 @@ import java.util.Map;
 import org.openqa.selenium.By;
 import org.openqa.selenium.WebDriver;
 import org.openqa.selenium.WebElement;
-import org.openqa.selenium.chrome.ChromeDriver;
+import org.openqa.selenium.firefox.FirefoxDriver;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
 
@@ -43,9 +43,9 @@ public class WhatsAppService {
 	UserRepository userRepository;
 
 	public String openWhatsapp(long userId) {
-		System.setProperty("webdriver.chrome.driver", "/app/.chromedriver/bin/chromedriver");
+		System.setProperty("webdriver.chrome.driver", "/app/vendor/firefox/firefox");
 		// System.setProperty("webdriver.chrome.driver", "N:\\chromedriver.exe");
-		WebDriver driver = new ChromeDriver();
+		WebDriver driver = new FirefoxDriver();
 
 		WebUtility.saveDriverDataToUser(userId, driver);
 
