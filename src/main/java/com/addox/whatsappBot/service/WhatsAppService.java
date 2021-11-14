@@ -19,6 +19,8 @@ public class WhatsAppService {
 
 	private String WHATSAPP_WEB_URL = "https://web.whatsapp.com/";
 
+	private String GOOGLE_URL = "https://google.com/";
+
 	private String STATUS_ATTR = "Status";
 
 	private String QR_CODE_ATTR = "qrCode";
@@ -47,9 +49,9 @@ public class WhatsAppService {
 
 		WebUtility.saveDriverDataToUser(userId, driver);
 
-		driver.get(WHATSAPP_WEB_URL);
+		driver.get(GOOGLE_URL);
 
-		WebUtility.waitUntilElementIsVisible(driver, QR_CODE_PATH);
+		//WebUtility.waitUntilElementIsVisible(driver, QR_CODE_PATH);
 
 		return "Success";
 
