@@ -45,11 +45,11 @@ public class WhatsAppService {
 		//System.setProperty("webdriver.chrome.driver", "N:\\chromedriver.exe");
 		WebDriver driver = new ChromeDriver();
 
+		WebUtility.saveDriverDataToUser(userId, driver);
+
 		driver.get(WHATSAPP_WEB_URL);
 
 		WebUtility.waitUntilElementIsVisible(driver, QR_CODE_PATH);
-
-		WebUtility.saveDriverDataToUser(userId, driver);
 
 		return "Success";
 
