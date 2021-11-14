@@ -49,17 +49,19 @@ public class WhatsAppService {
 		System.setProperty("webdriver.chrome.driver", "/app/.chromedriver/bin/chromedriver");
 		// System.setProperty("webdriver.chrome.driver", "N:\\chromedriver.exe");
 
-		DesiredCapabilities capabilities = new DesiredCapabilities();
-		capabilities.setCapability("browserName", "chrome");
-		capabilities.setCapability("browserVersion", "95.0.4638.69");
+		DesiredCapabilities caps = new DesiredCapabilities();
+		caps.setCapability("os", "Windows");
+		caps.setCapability("os_version", "10");
+		caps.setCapability("browser", "Chrome");
+		caps.setCapability("browser_version", "latest");
 
-		WebDriver driver = new ChromeDriver(capabilities);
+		WebDriver driver = new ChromeDriver(caps);
 
 		WebUtility.saveDriverDataToUser(userId, driver);
 		
-		Capabilities caps = ((RemoteWebDriver) driver).getCapabilities();
-		String browserName = caps.getBrowserName();
-		String browserVersion = caps.getVersion();
+		Capabilities capss = ((RemoteWebDriver) driver).getCapabilities();
+		String browserName = capss.getBrowserName();
+		String browserVersion = capss.getVersion();
 		System.out.println(browserName+" "+browserVersion);
 
 		driver.get(WHATSAPP_WEB_URL);
